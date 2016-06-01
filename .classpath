@@ -26,5 +26,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/required/jboss-logging-3.3.0.Final.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/javax.faces-2.2.13.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.37-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

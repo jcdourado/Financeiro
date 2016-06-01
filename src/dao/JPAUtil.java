@@ -14,7 +14,7 @@ public class JPAUtil {
 	}
 	
 	public static JPAUtil getJPAUtil(){
-		if(jpa != null){
+		if(jpa == null){
 			jpa = new JPAUtil();
 		}
 		return jpa;
