@@ -7,7 +7,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import dao.ContaDao;
-import dao.UsuarioDao;
 import model.Conta;
 import model.Usuario;
 

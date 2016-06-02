@@ -22,10 +22,10 @@ public class TesteUsuarioDao {
 		usuario.setSenha("4343255");
 	}
 	
-//	@Test
-//	public void adicionar() {
-//		assertTrue(dao.adicionar(usuario));
-//	}
+	@Test
+	public void adicionar() {
+		assertTrue(dao.adicionar(usuario));
+	}
 //	@Test
 //	public void alterar() {
 //		assertTrue(dao.alterar(usuario));
