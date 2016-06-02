@@ -36,6 +36,7 @@ public class UsuarioDao {
 		EntityManager man = JPAUtil.getJPAUtil().getEntityManager();
 		man.getTransaction().begin();
 		try{
+			u = man.find(Usuario.class, u.getUsuario());
 			man.remove(u);
 			man.getTransaction().commit();
 			return true;

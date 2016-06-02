@@ -26,9 +26,10 @@ public class TesteContaDao {
 		conta = new Conta();
 		conta.setDescricao("teste Conta");
 		conta.setFrequencia(12);
-		conta.setNome("Conta da rua");
+		conta.setNome("Conta da rua3");
 		conta.setValor(423555);
 		conta.setUsuario(usuario);
+		conta.setId(11);
 	}
 	
 //	@Test
@@ -41,14 +42,10 @@ public class TesteContaDao {
 //	}
 	@Test
 	public void excluir() {
-		conta.setId(10);
 		assertTrue(dao.remover(conta));
 	}
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
-
-
-
 }
