@@ -2,6 +2,8 @@ package teste;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -19,29 +21,29 @@ public class TesteRecebimentoDao {
 		dao = new RecebimentoDao();
 		usuario = new Usuario();
 		usuario.setNome("julio");
-		usuario.setUsuario("julio2");
+		usuario.setUsuario("julio43");
 		usuario.setEmail("jcd17071997");
 		usuario.setSenha("43432");
 		recebimento = new Recebimento();
 		recebimento.setDescricao("teste recebimento");
 		recebimento.setFrequencia(12);
-		recebimento.setNome("recebimento da r3ua3");
+		recebimento.setNome("recebimento da r443ua3");
 		recebimento.setValor(423555);
 		recebimento.setUsuario(usuario);
-		recebimento.setId(13);
+		recebimento.setId(1);
 	}
 	
 //	@Test
-//	public void adicionar() {
+//	public void adicionar() throws ClassNotFoundException, SQLException {
 //		assertTrue(dao.adicionar(recebimento));
 //	}
 //	@Test
-//	public void alterar() {
+//	public void alterar() throws ClassNotFoundException, SQLException {
 //		assertTrue(dao.alterar(recebimento));
 //	}
 	@Test
-	public void excluir() {
-		assertTrue(dao.remover(recebimento));
+	public void excluir() throws ClassNotFoundException, SQLException {
+		assertTrue(dao.remover(recebimento.getId()));
 	}
 	
 	@AfterClass

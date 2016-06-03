@@ -1,46 +1,71 @@
 package dao;
 
-import javax.persistence.EntityManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Conta;
+import model.Usuario;
 
 public class ContaDao {
-	public boolean adicionar(Conta u){
-		EntityManager man = JPAUtil.getJPAUtil().getEntityManager();
-		man.getTransaction().begin();
-		try{
-			man.persist(u);
-			man.getTransaction().commit();
-			return true;
-		}
-		catch(Exception e){
-		}
-		return false;
+	
+	public boolean adicionar(Conta c) throws SQLException, ClassNotFoundException{
+		Connection con = DBUtil.getDBUtil().getConnection();
+		String sql = "INSERT INTO CONTA(FREQUENCIA,NOME,DESCRICAO,VALOR,USUARIO) VALUES (?,?,?,?,?)";
+		PreparedStatement pS = con.prepareStatement(sql);
+		pS.setInt(1, c.getFrequencia());
+		pS.setString(2, c.getNome());
+		pS.setString(3, c.getDescricao());
+		pS.setFloat(4, c.getValor());
+		pS.setString(5, c.getUsuario().getUsuario());
+		return !pS.execute();
 	}
 	
-	public boolean alterar(Conta u){
-		EntityManager man = JPAUtil.getJPAUtil().getEntityManager();
-		man.getTransaction().begin();
-		
-		try{
-			man.merge(u);
-			man.getTransaction().commit();
-			return true;
-		}
-		catch(Exception e){	}
-		return false;
+	public boolean remover(int c) throws ClassNotFoundException, SQLException{
+		Connection con = DBUtil.getDBUtil().getConnection();
+		String sql = "DELETE FROM CONTA WHERE ID = ?";
+		PreparedStatement pS = con.prepareStatement(sql);
+		pS.setInt(1, c);
+		return !pS.execute();
 	}
 	
-	public boolean remover(Conta u){
-		EntityManager man = JPAUtil.getJPAUtil().getEntityManager();
-		man.getTransaction().begin();
-		try{
-			u = man.find(Conta.class, u.getId());
-			man.remove(u);
-			man.getTransaction().commit();
-			return true;
+	public boolean alterar(Conta c) throws ClassNotFoundException, SQLException{
+		Connection con = DBUtil.getDBUtil().getConnection();
+		String sql = "UPDATE CONTA SET FREQUENCIA = ?, NOME = ?, DESCRICAO = ?, VALOR = ? WHERE ID = ?";
+		PreparedStatement pS = con.prepareStatement(sql);
+		pS.setInt(1, c.getFrequencia());
+		pS.setString(2, c.getNome());
+		pS.setString(3, c.getDescricao());
+		pS.setFloat(4, c.getValor());
+		pS.setInt(5, c.getId());
+		return !pS.execute();
+	}
+	
+	public List<Conta> consultarPorNome(String nome, Usuario usuario) throws ClassNotFoundException, SQLException{
+		Connection con = DBUtil.getDBUtil().getConnection();
+		String sql = "SELECT * FROM CONTA WHERE NOME LIKE ? AND USUARIO = ?";
+		PreparedStatement pS = con.prepareStatement(sql);
+		pS.setString(1, "%"+nome+"%");
+		pS.setString(2, usuario.getUsuario());
+		ResultSet rS = pS.executeQuery();
+		List<Conta> contas = new ArrayList<Conta>();
+		while(rS.next()){
+			Conta c = new Conta();
+			c.setFrequencia(rS.getInt("FREQUENCIA"));
+			c.setNome(rS.getString("nome"));
+			c.setDescricao(rS.getString("descricao"));
+			c.setUsuario(usuario);
+			c.setValor(rS.getFloat("valor"));
+			c.setId(rS.getInt("ID"));
+			contas.add(c);
 		}
-		catch(Exception e){	}
-		return false;		
+		return contas;
+	}
+	
+	public List<Conta> todasContas(Usuario usuario) throws ClassNotFoundException, SQLException{
+		return consultarPorNome("", usuario);
 	}
 }
