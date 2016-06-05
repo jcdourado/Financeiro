@@ -9,8 +9,11 @@
 <title>Principal</title>
 </h:head>
 <h:body>
-	<h:form>
+	<h:form id="formConta">
 		<h:outputLabel value="Contas" />
+		
+		<h:commandButton value="Nova Despesa" action="#{contaMB.nova}" />
+		<h:messages />
 		
 		<h:dataTable value="#{contaMB.contas}" var="conta">
 			<h:column>#{conta.nome}
@@ -24,6 +27,11 @@
 			</h:column>
 			<h:column>#{conta.descricao}
 				<f:facet name="header">Descrição</f:facet>
+			</h:column>
+			<h:column>
+				<h:commandButton value="Editar" action="#{contaMB.atualizar(conta)}" />
+				<h:commandButton value="Excluir" action="#{contaMB.excluir(conta)}" />
+				<f:facet name="header">Ações</f:facet>
 			</h:column>
 		</h:dataTable>
 	

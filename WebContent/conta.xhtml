@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Conta</title>
+</h:head>
+<h:body>
+	<h:form id="formContaRegistro">
+		<h:outputLabel value="Nova conta" rendered="#{contaMB.contaAtual.id == 0}"/>
+		<h:outputLabel value="Alterar conta" rendered="#{contaMB.contaAtual.id != 0}"/>
+		
+		<h:outputLabel value="Despesa: " />
+		<h:inputText value="#{contaMB.contaAtual.nome}" size="20" />
+		
+		<h:outputLabel value="Descrição: " />
+		<h:inputTextarea value="#{contaMB.contaAtual.descricao}" rows="3" cols="10" />
+		
+		<h:outputLabel value="Valor: " />
+		<h:inputText value="#{contaMB.contaAtual.valor}" size="10" />
+		
+		<h:outputLabel value="Frequencia: " />
+		<h:inputText value="#{contaMB.contaAtual.frequencia}" size="10" />
+		
+		<h:commandButton value="Atualizar" rendered="#{contaMB.contaAtual.id != 0}" action="#{contaMB.update}" />
+		<h:commandButton value="Confirmar" rendered="#{contaMB.contaAtual.id == 0}" action="#{contaMB.inserir}" />
+		<h:commandButton value="Cancelar" action="#{contaMB.cancelar}" />
+		
+		<h:messages />
+	</h:form>
+</h:body>
+</html>
