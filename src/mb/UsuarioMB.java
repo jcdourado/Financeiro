@@ -3,6 +3,7 @@ package mb;
 import java.io.Serializable;
 import java.sql.SQLException;
 
+import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -28,7 +29,8 @@ public class UsuarioMB implements Serializable{
 			usuario = dao.consultar(usuario);
 			if(usuario.getEmail() != null){
 				usuario.setLogado(true);
-				return "index?faces-redirect=true";
+				initContas();
+				return "main?faces-redirect=true";
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -63,6 +65,13 @@ public class UsuarioMB implements Serializable{
 	public String registrar(){
 		usuario = new Usuario();
 		return "usuario?faces-redirect=true";
+	}
+
+	public void initContas(){
+		 FacesContext ctx = FacesContext.getCurrentInstance();
+		 Application app = ctx.getApplication();
+		 ContaMB contaMB = app.evaluateExpressionGet(ctx, "#{contaMB}", ContaMB.class);		 
+		 contaMB.init(usuario);
 	}
 	
 	public UsuarioDao getDao() {
