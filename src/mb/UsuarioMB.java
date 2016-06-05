@@ -1,13 +1,14 @@
 package mb;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import daoJPA.UsuarioDao;
+import dao.UsuarioDao;
 import model.Usuario;
 
 @ManagedBean
@@ -23,15 +24,35 @@ public class UsuarioMB implements Serializable{
 	
 	
 	public String logar(){
-		Usuario u = null;
-		if((u = dao.consultar(usuario)) != null){
-			if(u.getSenha() != usuario.getSenha()){
+		try {
+			usuario = dao.consultar(usuario);
+			if(usuario.getEmail() != null){
+				usuario.setLogado(true);
+				return "index?faces-redirect=true";
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario ou senha inválidos", "Usuario ou senha inválidos");
+		ctx.addMessage("formLogin", msg);
+		return "";
+	}
+	
+	public String registrarNovo(){
+		try {
+			if(dao.adicionar(usuario)){
 				FacesContext ctx = FacesContext.getCurrentInstance();
-				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Senha inválida", "Senha inválida");
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario cadastrado com sucesso", "Usuario cadastrado com sucesso");
 				ctx.addMessage("formLogin", msg);
 				return "";
 			}
-			return "registrar";
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario não cadastrado", "Usuario não cadastrado");
@@ -40,7 +61,8 @@ public class UsuarioMB implements Serializable{
 	}
 	
 	public String registrar(){
-		return "registrar?faces-redirect=true";
+		usuario = new Usuario();
+		return "usuario?faces-redirect=true";
 	}
 	
 	public UsuarioDao getDao() {
