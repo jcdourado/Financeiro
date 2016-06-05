@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Recebimento</title>
+</h:head>
+<h:body>
+	<h:form id="formRecebimentoRegistro">
+		<h:outputLabel value="Novo Ganho" rendered="#{recebimentoMB.recebimentoAtual.id == 0}"/>
+		<h:outputLabel value="Alterar Ganho" rendered="#{recebimentoMB.recebimentoAtual.id != 0}"/>
+		
+		<h:outputLabel value="Ganho: " />
+		<h:inputText value="#{recebimentoMB.recebimentoAtual.nome}" size="20" />
+		
+		<h:outputLabel value="Descrição: " />
+		<h:inputTextarea value="#{recebimentoMB.recebimentoAtual.descricao}" rows="3" cols="10" />
+		
+		<h:outputLabel value="Valor: " />
+		<h:inputText value="#{recebimentoMB.recebimentoAtual.valor}" size="10" />
+		
+		<h:outputLabel value="Frequencia: " />
+		<h:inputText value="#{recebimentoMB.recebimentoAtual.frequencia}" size="10" />
+		
+		<h:commandButton value="Atualizar" rendered="#{recebimentoMB.recebimentoAtual.id != 0}" action="#{recebimentoMB.update}" />
+		<h:commandButton value="Confirmar" rendered="#{recebimentoMB.recebimentoAtual.id == 0}" action="#{recebimentoMB.inserir}" />
+		<h:commandButton value="Cancelar" action="#{recebimentoMB.cancelar}" />
+		
+		<h:messages />
+	</h:form>
+</h:body>
+</html>

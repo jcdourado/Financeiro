@@ -13,7 +13,7 @@
 		<h:outputLabel value="Contas" />
 		
 		<h:commandButton value="Nova Despesa" action="#{contaMB.nova}" />
-		<h:messages />
+
 		
 		<h:dataTable value="#{contaMB.contas}" var="conta">
 			<h:column>#{conta.nome}
@@ -36,5 +36,33 @@
 		</h:dataTable>
 	
 	</h:form>
+	
+	<h:form id="formRecebimento">
+		<h:outputLabel value="Ganhos" />
+		
+		<h:commandButton value="Novo Ganho " action="#{recebimentoMB.nova}" />
+		
+		<h:dataTable value="#{recebimentoMB.recebimentos}" var="recebimento">
+			<h:column>#{recebimento.nome}
+				<f:facet name="header">Nome</f:facet>
+			</h:column>
+			<h:column>#{recebimento.valor}
+				<f:facet name="header">Valor</f:facet>
+			</h:column>
+			<h:column>#{recebimento.frequencia}
+				<f:facet name="header">Frequência</f:facet>
+			</h:column>
+			<h:column>#{recebimento.descricao}
+				<f:facet name="header">Descrição</f:facet>
+			</h:column>
+			<h:column>
+				<h:commandButton value="Editar" action="#{recebimentoMB.atualizar(recebimento)}" />
+				<h:commandButton value="Excluir" action="#{recebimentoMB.excluir(recebimento)}" />
+				<f:facet name="header">Ações</f:facet>
+			</h:column>
+		</h:dataTable>
+	
+	</h:form>
+	<h:messages />
 </h:body>
 </html>

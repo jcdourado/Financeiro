@@ -29,7 +29,7 @@ public class UsuarioMB implements Serializable{
 			usuario = dao.consultar(usuario);
 			if(usuario.getEmail() != null){
 				usuario.setLogado(true);
-				initContas();
+				initAll();
 				return "main?faces-redirect=true";
 			}
 		} catch (ClassNotFoundException e) {
@@ -67,11 +67,13 @@ public class UsuarioMB implements Serializable{
 		return "usuario?faces-redirect=true";
 	}
 
-	public void initContas(){
+	public void initAll(){
 		 FacesContext ctx = FacesContext.getCurrentInstance();
 		 Application app = ctx.getApplication();
 		 ContaMB contaMB = app.evaluateExpressionGet(ctx, "#{contaMB}", ContaMB.class);		 
 		 contaMB.init(usuario);
+		 RecebimentoMB recebimentoMB = app.evaluateExpressionGet(ctx, "#{recebimentoMB}", RecebimentoMB.class);
+		 recebimentoMB.init(usuario);
 	}
 	
 	public UsuarioDao getDao() {
