@@ -23,7 +23,14 @@
 		<h:inputText value="#{contaMB.contaAtual.valor}" size="10" />
 		
 		<h:outputLabel value="Frequencia: " />
-		<h:inputText value="#{contaMB.contaAtual.frequencia}" size="10" />
+		<h:selectOneMenu value="#{contaMB.contaAtual.frequencia}" >
+			<f:selectItem itemValue="0" itemLabel="Nenhuma" />
+			<f:selectItem itemValue="1" itemLabel="Diário" />
+			<f:selectItem itemValue="7" itemLabel="Semanal" />
+			<f:selectItem itemValue="30" itemLabel="Mensal" />
+			<f:selectItem itemValue="360" itemLabel="Anual" />
+		</h:selectOneMenu>
+		
 		
 		<h:commandButton value="Atualizar" rendered="#{contaMB.contaAtual.id != 0}" action="#{contaMB.update}" />
 		<h:commandButton value="Confirmar" rendered="#{contaMB.contaAtual.id == 0}" action="#{contaMB.inserir}" />

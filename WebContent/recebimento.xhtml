@@ -23,7 +23,13 @@
 		<h:inputText value="#{recebimentoMB.recebimentoAtual.valor}" size="10" />
 		
 		<h:outputLabel value="Frequencia: " />
-		<h:inputText value="#{recebimentoMB.recebimentoAtual.frequencia}" size="10" />
+		<h:selectOneMenu value="#{recebimentoMB.recebimentoAtual.frequencia}" >
+			<f:selectItem itemValue="0" itemLabel="Nenhuma" />
+			<f:selectItem itemValue="1" itemLabel="Diário" />
+			<f:selectItem itemValue="7" itemLabel="Semanal" />
+			<f:selectItem itemValue="30" itemLabel="Mensal" />
+			<f:selectItem itemValue="360" itemLabel="Anual" />
+		</h:selectOneMenu>
 		
 		<h:commandButton value="Atualizar" rendered="#{recebimentoMB.recebimentoAtual.id != 0}" action="#{recebimentoMB.update}" />
 		<h:commandButton value="Confirmar" rendered="#{recebimentoMB.recebimentoAtual.id == 0}" action="#{recebimentoMB.inserir}" />

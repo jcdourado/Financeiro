@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,11 @@ public class Conta {
 	private String descricao;
 	private float valor;
 	private Usuario usuario;
+	private Date data;
+	
+	public Conta() {
+		data = new Date();
+	}
 	@Id
 	@GeneratedValue
 	public int getId() {
@@ -57,5 +64,11 @@ public class Conta {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
 	}
 }

@@ -14,13 +14,14 @@ public class ContaDao {
 	
 	public boolean adicionar(Conta c) throws SQLException, ClassNotFoundException{
 		Connection con = DBUtil.getDBUtil().getConnection();
-		String sql = "INSERT INTO CONTA(FREQUENCIA,NOME,DESCRICAO,VALOR,USUARIO) VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO CONTA(FREQUENCIA,NOME,DESCRICAO,VALOR,USUARIO,DATA) VALUES (?,?,?,?,?,?)";
 		PreparedStatement pS = con.prepareStatement(sql);
 		pS.setInt(1, c.getFrequencia());
 		pS.setString(2, c.getNome());
 		pS.setString(3, c.getDescricao());
 		pS.setFloat(4, c.getValor());
 		pS.setString(5, c.getUsuario().getUsuario());
+		pS.setDate(6, new java.sql.Date(c.getData().getTime()));
 		return !pS.execute();
 	}
 	
@@ -34,13 +35,14 @@ public class ContaDao {
 	
 	public boolean alterar(Conta c) throws ClassNotFoundException, SQLException{
 		Connection con = DBUtil.getDBUtil().getConnection();
-		String sql = "UPDATE CONTA SET FREQUENCIA = ?, NOME = ?, DESCRICAO = ?, VALOR = ? WHERE ID = ?";
+		String sql = "UPDATE CONTA SET FREQUENCIA = ?, NOME = ?, DESCRICAO = ?, VALOR = ?, DATA = ? WHERE ID = ?";
 		PreparedStatement pS = con.prepareStatement(sql);
 		pS.setInt(1, c.getFrequencia());
 		pS.setString(2, c.getNome());
 		pS.setString(3, c.getDescricao());
 		pS.setFloat(4, c.getValor());
-		pS.setInt(5, c.getId());
+		pS.setDate(5, new java.sql.Date(c.getData().getTime()));
+		pS.setInt(6, c.getId());
 		return !pS.execute();
 	}
 	
@@ -60,6 +62,7 @@ public class ContaDao {
 			c.setUsuario(usuario);
 			c.setValor(rS.getFloat("valor"));
 			c.setId(rS.getInt("ID"));
+			c.setData(rS.getDate("DATA"));
 			contas.add(c);
 		}
 		return contas;
