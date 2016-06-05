@@ -19,7 +19,8 @@ public class ListenerLogin implements PhaseListener{
 	@Override
 	public void afterPhase(PhaseEvent e) {
 		FacesContext ctx = FacesContext.getCurrentInstance();
-		if(!"/login.xhtml".equals(ctx.getViewRoot().getViewId()) && !"/usuario.xhtml".equals(ctx.getViewRoot().getViewId()) && !"/index.xhtml".equals(ctx.getViewRoot().getViewId())){
+		String page = ctx.getViewRoot().getViewId();
+		if(!"/login.xhtml".equals(page) && !"/usuario.xhtml".equals(page) && !"/index.xhtml".equals(page) && !"/esqueci.xhtml".equals(page)){
 			Application app = ctx.getApplication();
 			UsuarioMB user = app.evaluateExpressionGet(ctx, "#{usuarioMB}", UsuarioMB.class);
 			if(!user.getUsuario().isLogado()){

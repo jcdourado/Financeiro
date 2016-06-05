@@ -11,13 +11,16 @@
 <h:body>
 	<h:form id="formLogin">
 		<h:outputLabel value="Usuario: " />
-		<h:inputText size="20" value="#{usuarioMB.usuario.usuario}" />
+		<h:inputText 
+		size="20" value="#{usuarioMB.usuario.usuario}" />
 		
 		<h:outputLabel value="Senha: " />
 		<h:inputSecret size="20" value="#{usuarioMB.usuario.senha}" />
 		
 		<h:commandButton value="Login" action="#{usuarioMB.logar}" />
 		<h:commandButton value="Registrar-se" action="#{usuarioMB.registrar}"  />
+		<a href="esqueci.xhtml">Esqueceu a senha?</a>
+		
 		<h:messages />
 	</h:form>
 </h:body>
