@@ -3,9 +3,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
 >
-<h:head>
+<h:head lang="pt">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel='stylesheet' href='fullcalendar-2.7.3/fullcalendar.css' />
+	<script src='fullcalendar-2.7.3/lib/jquery.min.js'></script>
+	<script src='fullcalendar-2.7.3/lib/moment.min.js'></script>
+	<script src='fullcalendar-2.7.3/fullcalendar.js'></script>
+	<script src='fullcalendar-2.7.3/lang/pt-br.js'></script>		
+	<script>
+		$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+		    $('#calendar').fullCalendar({
+		        lang: 'pt-br',
+			    events: [
+			        {
+			            title: 'Event1',
+			            start: '2016-06-10',
+			            backgroundColor: 'red'
+			        },
+			        {
+			            title: 'Event2',
+			            start: '2016-06-11',
+			            backgroundColor: 'blue'
+			        }
+			        // etc...
+			    ],
+			    textColor: 'black' // an option!
+			});
+	
+		});
+	
+	</script>
 <title>Principal</title>
 </h:head>
 <h:body>
@@ -70,5 +102,10 @@
 	
 	</h:form>
 	<h:messages />
+	
+	<!-- Começo do fullcalendar -->
+	
+	<div id='calendar'></div>
+	
 </h:body>
 </html>
