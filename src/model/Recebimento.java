@@ -17,10 +17,6 @@ public class Recebimento {
 	private float valor;
 	private Usuario usuario;
 	private Date data;
-	public Recebimento() {
-		data = new Date();
-	}
-	
 	@Id
 	@GeneratedValue
 	public int getId() {

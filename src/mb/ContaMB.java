@@ -2,6 +2,7 @@ package mb;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.el.ELException;
@@ -27,6 +28,7 @@ public class ContaMB {
 		Application app = ctx.getApplication();
 		UsuarioMB u = app.evaluateExpressionGet(ctx, "#{usuarioMB}", UsuarioMB.class);
 		try {
+			contaAtual = verificarDataAnterior(contaAtual);
 			contaAtual.setUsuario(u.getUsuario());
 			if(dao.adicionar(contaAtual)){
 				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Conta inserida com sucesso!", "Conta inserida com sucesso");
@@ -52,6 +54,7 @@ public class ContaMB {
 	public String update(){
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		try {
+			contaAtual = verificarDataAnterior(contaAtual);
 			if(dao.alterar(contaAtual)){
 				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Conta atualizada com sucesso!", "Conta atualizada com sucesso");
 				ctx.addMessage("formConta", msg);
@@ -93,6 +96,27 @@ public class ContaMB {
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Falha na remoção da conta!", "Falha na remoção da conta");
 		ctx.addMessage("formConta", msg);
 		return "main";
+	}
+	
+	@SuppressWarnings("deprecation")
+	public Conta atualizarData(Conta c){
+		switch(c.getFrequencia()){
+			case 1: c.getData().setDate(c.getData().getDate() + 1); break;
+			case 2: c.getData().setDate(c.getData().getDate() + 7); break;
+			case 3: c.getData().setMonth(c.getData().getMonth() + 1); break;
+			case 4: c.getData().setYear(c.getData().getYear() + 1); break;
+		}
+		return c;
+	}
+	
+	public Conta verificarDataAnterior(Conta c){
+		if(c.getFrequencia() != 0){
+			Date dateAux = new Date();
+			while(c.getData().before(dateAux) ){
+				c = atualizarData(c);
+			}
+		}
+		return c;
 	}
 	
 	public void init(Usuario user){

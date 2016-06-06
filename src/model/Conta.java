@@ -18,9 +18,6 @@ public class Conta {
 	private Usuario usuario;
 	private Date data;
 	
-	public Conta() {
-		data = new Date();
-	}
 	@Id
 	@GeneratedValue
 	public int getId() {

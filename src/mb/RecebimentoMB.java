@@ -2,6 +2,7 @@ package mb;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.el.ELException;
@@ -27,6 +28,7 @@ public class RecebimentoMB {
 		Application app = ctx.getApplication();
 		UsuarioMB u = app.evaluateExpressionGet(ctx, "#{usuarioMB}", UsuarioMB.class);
 		try {
+			recebimentoAtual = verificarDataAnterior(recebimentoAtual);
 			recebimentoAtual.setUsuario(u.getUsuario());
 			if(dao.adicionar(recebimentoAtual)){
 				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Recebimento inserido com sucesso!", "Recebimento inserido com sucesso");
@@ -52,6 +54,7 @@ public class RecebimentoMB {
 	public String update(){
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		try {
+			recebimentoAtual = verificarDataAnterior(recebimentoAtual);
 			if(dao.alterar(recebimentoAtual)){
 				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Recebimento atualizado com sucesso!", "Recebimento atualizada com sucesso");
 				ctx.addMessage("formRecebimento", msg);
@@ -93,6 +96,27 @@ public class RecebimentoMB {
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Falha na remoção do recebimento!", "Falha na remoção do recebimento");	
 		ctx.addMessage("formRecebimento", msg);
 		return "main";
+	}
+	
+	@SuppressWarnings("deprecation")
+	public Recebimento atualizarData(Recebimento c){
+		switch(c.getFrequencia()){
+			case 1: c.getData().setDate(c.getData().getDate() + 1); break;
+			case 2: c.getData().setDate(c.getData().getDate() + 7); break;
+			case 3: c.getData().setMonth(c.getData().getMonth() + 1); break;
+			case 4: c.getData().setYear(c.getData().getYear() + 1); break;
+		}
+		return c;
+	}
+	
+	public Recebimento verificarDataAnterior(Recebimento c){
+		if(c.getFrequencia() != 0){
+			Date dateAux = new Date();
+			while(c.getData().before(dateAux) ){
+				c = atualizarData(c);
+			}
+		}
+		return c;
 	}
 	
 	public void init(Usuario user){

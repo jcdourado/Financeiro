@@ -26,10 +26,15 @@
 		<h:selectOneMenu value="#{recebimentoMB.recebimentoAtual.frequencia}" >
 			<f:selectItem itemValue="0" itemLabel="Nenhuma" />
 			<f:selectItem itemValue="1" itemLabel="Diário" />
-			<f:selectItem itemValue="7" itemLabel="Semanal" />
-			<f:selectItem itemValue="30" itemLabel="Mensal" />
-			<f:selectItem itemValue="360" itemLabel="Anual" />
+			<f:selectItem itemValue="2" itemLabel="Semanal" />
+			<f:selectItem itemValue="3" itemLabel="Mensal" />
+			<f:selectItem itemValue="4" itemLabel="Anual" />
 		</h:selectOneMenu>
+		
+		<h:outputLabel value="Data do recebimento: " />
+		<h:inputText value="#{recebimentoMB.recebimentoAtual.data}" >
+			<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3" />
+		</h:inputText>
 		
 		<h:commandButton value="Atualizar" rendered="#{recebimentoMB.recebimentoAtual.id != 0}" action="#{recebimentoMB.update}" />
 		<h:commandButton value="Confirmar" rendered="#{recebimentoMB.recebimentoAtual.id == 0}" action="#{recebimentoMB.inserir}" />
