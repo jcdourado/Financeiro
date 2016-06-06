@@ -23,7 +23,6 @@ public class UsuarioMB implements Serializable{
 	private Usuario usuario = new Usuario();
 	private UsuarioDao dao = new UsuarioDao();
 	
-	
 	public String logar(){
 		try {
 			usuario = dao.consultar(usuario);

@@ -22,7 +22,7 @@ public class RecebimentoMB {
 	private Recebimento recebimentoAtual = new Recebimento();
 	private List<Recebimento> recebimentos = new ArrayList<Recebimento>();
 	private RecebimentoDao dao = new RecebimentoDao(); 
-
+	
 	public String inserir(){
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		Application app = ctx.getApplication();

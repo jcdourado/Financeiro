@@ -11,12 +11,15 @@
 	<script src='fullcalendar-2.7.3/lib/jquery.min.js'></script>
 	<script src='fullcalendar-2.7.3/lib/moment.min.js'></script>
 	<script src='fullcalendar-2.7.3/fullcalendar.js'></script>
-	<script src='fullcalendar-2.7.3/lang/pt-br.js'></script>		
+	<script src='fullcalendar-2.7.3/lang/pt-br.js'></script>
+	<script src='pegaDatas.js'></script>		
 	<script>
 		$(document).ready(function() {
 
     // page is now ready, initialize the calendar...
-
+			console.log(carregarContas());
+			console.log(carregarRecebimentos());
+			
 		    $('#calendar').fullCalendar({
 		        lang: 'pt-br',
 			    events: [
@@ -34,7 +37,8 @@
 			    ],
 			    textColor: 'black' // an option!
 			});
-	
+		
+			
 		});
 	
 	</script>
@@ -106,6 +110,5 @@
 	<!-- Começo do fullcalendar -->
 	
 	<div id='calendar'></div>
-	
 </h:body>
 </html>
