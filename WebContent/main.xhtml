@@ -38,7 +38,6 @@
 			    textColor: 'black' // an option!
 			});
 		
-			
 		});
 	
 	</script>
@@ -64,12 +63,12 @@
 			<h:column>#{conta.descricao}
 				<f:facet name="header">Descrição</f:facet>
 			</h:column>
-			<h:column>#{conta.data}
+			<h:column><h:outputText value="#{conta.proxData}"><f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy" /></h:outputText>
 				<f:facet name="header">Próxima cobrança</f:facet>
 			</h:column>
 			<h:column>
-				<h:commandButton value="Editar" action="#{contaMB.atualizar(conta)}" />
-				<h:commandButton value="Excluir" action="#{contaMB.excluir(conta)}" />
+				<h:commandButton value="Editar" action="#{contaMB.atualizar( conta )}" />
+				<h:commandButton value="Excluir" action="#{contaMB.excluir( conta )}" />
 				<f:facet name="header">Ações</f:facet>
 			</h:column>
 		</h:dataTable>
@@ -94,12 +93,13 @@
 			<h:column>#{recebimento.descricao}
 				<f:facet name="header">Descrição</f:facet>
 			</h:column>
-			<h:column>#{recebimento.data}
+			<h:column><h:outputText value="#{recebimento.proxData}"><f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy" /></h:outputText>
 				<f:facet name="header">Próximo recebimento</f:facet>
+				
 			</h:column>
 			<h:column>
-				<h:commandButton value="Editar" action="#{recebimentoMB.atualizar(recebimento)}" />
-				<h:commandButton value="Excluir" action="#{recebimentoMB.excluir(recebimento)}" />
+				<h:commandButton value="Editar" action="#{recebimentoMB.atualizar( recebimento)}" />
+				<h:commandButton value="Excluir" action="#{recebimentoMB.excluir( recebimento )}" />
 				<f:facet name="header">Ações</f:facet>
 			</h:column>
 		</h:dataTable>

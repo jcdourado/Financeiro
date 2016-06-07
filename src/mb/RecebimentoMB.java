@@ -101,19 +101,21 @@ public class RecebimentoMB {
 	@SuppressWarnings("deprecation")
 	public Recebimento atualizarData(Recebimento c){
 		switch(c.getFrequencia()){
-			case 1: c.getData().setDate(c.getData().getDate() + 1); break;
-			case 2: c.getData().setDate(c.getData().getDate() + 7); break;
-			case 3: c.getData().setMonth(c.getData().getMonth() + 1); break;
-			case 4: c.getData().setYear(c.getData().getYear() + 1); break;
+			case 1: c.getProxData().setDate(c.getProxData().getDate() + 1); break;
+			case 2: c.getProxData().setDate(c.getProxData().getDate() + 7); break;
+			case 3: c.getProxData().setMonth(c.getProxData().getMonth() + 1); break;
+			case 4: c.getProxData().setYear(c.getProxData().getYear() + 1); break;
 		}
 		return c;
 	}
 	
 	public Recebimento verificarDataAnterior(Recebimento c){
+		c.setProxData(new Date(c.getData().getTime()));
 		if(c.getFrequencia() != 0){
 			Date dateAux = new Date();
-			while(c.getData().before(dateAux) ){
+			while(c.getProxData().before(dateAux) ){
 				c = atualizarData(c);
+				System.out.println(c.getProxData() + " - - "+  c.getData());
 			}
 		}
 		return c;
@@ -122,6 +124,9 @@ public class RecebimentoMB {
 	public void init(Usuario user){
 		try {
 			recebimentos = dao.todasRecebimentos(user);
+			for(Recebimento r : recebimentos){
+				verificarDataAnterior(r);
+			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

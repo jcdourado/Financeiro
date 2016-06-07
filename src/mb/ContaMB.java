@@ -101,18 +101,19 @@ public class ContaMB {
 	@SuppressWarnings("deprecation")
 	public Conta atualizarData(Conta c){
 		switch(c.getFrequencia()){
-			case 1: c.getData().setDate(c.getData().getDate() + 1); break;
-			case 2: c.getData().setDate(c.getData().getDate() + 7); break;
-			case 3: c.getData().setMonth(c.getData().getMonth() + 1); break;
-			case 4: c.getData().setYear(c.getData().getYear() + 1); break;
+			case 1: c.getProxData().setDate(c.getProxData().getDate() + 1); break;
+			case 2: c.getProxData().setDate(c.getProxData().getDate() + 7); break;
+			case 3: c.getProxData().setMonth(c.getProxData().getMonth() + 1); break;
+			case 4: c.getProxData().setYear(c.getProxData().getYear() + 1); break;
 		}
 		return c;
 	}
 	
 	public Conta verificarDataAnterior(Conta c){
+		c.setProxData(new Date(c.getData().getTime()));
 		if(c.getFrequencia() != 0){
 			Date dateAux = new Date();
-			while(c.getData().before(dateAux) ){
+			while(c.getProxData().before(dateAux) ){
 				c = atualizarData(c);
 			}
 		}
@@ -122,6 +123,9 @@ public class ContaMB {
 	public void init(Usuario user){
 		try {
 			contas = dao.todasContas(user);
+			for(Conta c : contas){
+				verificarDataAnterior(c);
+			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

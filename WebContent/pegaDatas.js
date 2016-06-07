@@ -7,6 +7,7 @@ function carregarContas(){
 	};
 	http.open("POST", "Data", true);
 	http.send();
+	return http.onreadystatechange();
 }
 
 function carregarRecebimentos(){
@@ -16,6 +17,7 @@ function carregarRecebimentos(){
 			return (http.responseText.toString());
 		}
 	};
-	http.open("POST", "Data", true);
+	http.open("GET", "Data", true);
 	http.send();
+	return http.onreadystatechange();
 }

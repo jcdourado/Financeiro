@@ -17,6 +17,7 @@ public class Recebimento {
 	private float valor;
 	private Usuario usuario;
 	private Date data;
+	private Date proxData;
 	@Id
 	@GeneratedValue
 	public int getId() {
@@ -66,5 +67,11 @@ public class Recebimento {
 	}
 	public void setData(Date data) {
 		this.data = data;
+	}
+	public Date getProxData() {
+		return proxData;
+	}
+	public void setProxData(Date proxData) {
+		this.proxData = proxData;
 	}
 }
