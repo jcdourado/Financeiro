@@ -151,7 +151,7 @@ public class ContaMB {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		for(Conta c : this.getContas()){
-			builder.append(c.getDescricao() + "|"+sdf.format(c.getData()) + "-");
+			builder.append(c.getDescricao() + "|||"+sdf.format(c.getData()) + "---");
 		}
 		return (builder.toString());
 	}

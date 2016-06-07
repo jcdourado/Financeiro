@@ -13,13 +13,19 @@
 	<script src='fullcalendar-2.7.3/fullcalendar.js'></script>
 	<script src='fullcalendar-2.7.3/lang/pt-br.js'></script>
 	<script>
+		function retornaArray(){
+			
+		}
+	
 		$(document).ready(function() {
 
     // page is now ready, initialize the calendar...
-			var contas = document.getElementById("contas").value;	
-    		var recebimentos = document.getElementById("recebimentos").value;
+			var contas = document.getElementById("contas").value.split("---");	
+    		var recebimentos = document.getElementById("recebimentos").value.split("---");
     		
-    		
+    		for(var c = 0; c < contas.length ; c++){
+    			
+    		}
     		
 		    $('#calendar').fullCalendar({
 		        lang: 'pt-br',
