@@ -12,14 +12,15 @@
 	<script src='fullcalendar-2.7.3/lib/moment.min.js'></script>
 	<script src='fullcalendar-2.7.3/fullcalendar.js'></script>
 	<script src='fullcalendar-2.7.3/lang/pt-br.js'></script>
-	<script src='pegaDatas.js'></script>		
 	<script>
 		$(document).ready(function() {
 
     // page is now ready, initialize the calendar...
-			console.log(carregarContas());
-			console.log(carregarRecebimentos());
-			
+			var contas = document.getElementById("contas").value;	
+    		var recebimentos = document.getElementById("recebimentos").value;
+    		
+    		
+    		
 		    $('#calendar').fullCalendar({
 		        lang: 'pt-br',
 			    events: [
@@ -110,5 +111,7 @@
 	<!-- Começo do fullcalendar -->
 	
 	<div id='calendar'></div>
+	<h:inputHidden value="#{contaMB.contasString}" id="contas" />
+	<h:inputHidden value="#{recebimentoMB.recebimentosString}" id="recebimentos" />
 </h:body>
 </html>

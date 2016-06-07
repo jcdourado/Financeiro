@@ -1,6 +1,7 @@
 package mb;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,8 @@ public class ContaMB {
 	private Conta contaAtual = new Conta();
 	private List<Conta> contas = new ArrayList<Conta>();
 	private ContaDao dao = new ContaDao(); 
-
+	private String contasString = "";
+	
 	public String inserir(){
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		Application app = ctx.getApplication();
@@ -126,6 +128,7 @@ public class ContaMB {
 			for(Conta c : contas){
 				verificarDataAnterior(c);
 			}
+			this.setContasString(getContasString());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -141,6 +144,20 @@ public class ContaMB {
 	public String cancelar(){
 		contaAtual = new Conta();
 		return "main?faces-redirect=true";
+	}
+
+	public String getContasString() {
+		StringBuilder builder = new StringBuilder();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		for(Conta c : this.getContas()){
+			builder.append(c.getDescricao() + "|"+sdf.format(c.getData()) + "-");
+		}
+		return (builder.toString());
+	}
+
+	public void setContasString(String contasString) {
+		this.contasString = contasString;
 	}
 
 	public Conta getContaAtual() {

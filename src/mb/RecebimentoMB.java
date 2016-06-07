@@ -1,6 +1,7 @@
 package mb;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,8 @@ public class RecebimentoMB {
 	private Recebimento recebimentoAtual = new Recebimento();
 	private List<Recebimento> recebimentos = new ArrayList<Recebimento>();
 	private RecebimentoDao dao = new RecebimentoDao(); 
-	
+	private String recebimentosString = "";
+
 	public String inserir(){
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		Application app = ctx.getApplication();
@@ -127,6 +129,7 @@ public class RecebimentoMB {
 			for(Recebimento r : recebimentos){
 				verificarDataAnterior(r);
 			}
+			this.setRecebimentosString(getRecebimentosString());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -142,6 +145,20 @@ public class RecebimentoMB {
 	public String cancelar(){
 		recebimentoAtual = new Recebimento();
 		return "main?faces-redirect=true";
+	}
+
+	public String getRecebimentosString() {
+		StringBuilder builder = new StringBuilder();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		for(Recebimento c : this.getRecebimentos()){
+			builder.append(c.getDescricao() + "|"+sdf.format(c.getData()) + "-");
+		}
+		return (builder.toString());
+	}
+
+	public void setRecebimentosString(String recebimentosString) {
+		this.recebimentosString = recebimentosString;
 	}
 
 	public Recebimento getRecebimentoAtual() {
