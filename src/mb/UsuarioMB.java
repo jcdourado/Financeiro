@@ -24,8 +24,16 @@ public class UsuarioMB implements Serializable{
 	private UsuarioDao dao = new UsuarioDao();
 	
 	public String logout() {
-		usuario.setLogado(false);
+		limparCampos();
 		return "index?faces-redirect=false";
+	}
+	
+	public void limparCampos() {
+		usuario.setUsuario(null);
+		usuario.setNome(null);
+		usuario.setEmail(null);
+		usuario.setSenha(null);
+		usuario.setLogado(false);
 	}
 	
 	public String logar(){
