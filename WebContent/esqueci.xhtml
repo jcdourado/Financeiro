@@ -1,22 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Financeiro </title>
+	<meta charset="UTF-8" />
+	<title>Esqueci</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 <h:body>
-	<h:form id="formEsqueci">
-		<h:outputLabel value="Email: " />
-	
-		<h:inputText value="#{emailMB.email}" size="20" />
-		<h:commandButton value="Enviar" action="#{emailMB.esqueci}" />
-		<a href="login.xhtml">Voltar</a>
+<div class="container">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="index.xhtml">Financeiro</a>
+		</div>
 		
-		<h:messages />
-	</h:form>
+		<div>
+		
+			<h:form styleClass="navbar-form navbar-right"  id="formBody" role="search" >
+				
+				<div class="form-group">
+					
+					<div class="col-md-3">
+						<a class="btn btn-default navbar-btn btn-primary" href="register.xhtml">Registrar</a>
+					</div>
+				</div>
+				
+				<h:messages layout="table"/>
+				<h:inputHidden id="msg" />
+				<h:message for="msg" />
+				
+			</h:form>
+		
+		</div>
+		
+	  </div>
+	</nav>
+	
+	<div class="jumbotron">
+			<div class="form-group">
+			  <label for="email">E-mail:</label>
+			  <input type="text" class="form-control" id="email"/>
+			</div>
+			<div class="form-group">
+				<button type="button" class="btn btn-primary">Enviar</button>
+				<button type="button" class="btn btn-primary">Voltar</button>
+			</div>
+		</div>
+	
+</div>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/jquery.min.js"></script>
 </h:body>
 </html>

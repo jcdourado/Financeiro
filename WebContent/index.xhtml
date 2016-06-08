@@ -1,17 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Financeiro </title>
+	<meta charset="UTF-8" />
+	<title>Index</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 <h:body>
-	<a href="login.xhtml">Login</a>
-	<a href="usuario.xhtml">Registrar</a>
-
-
+<div class="container">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="index.xhtml">Financeiro</a>
+		</div>
+		
+		<div>
+		
+			<h:form styleClass="navbar-form navbar-right"  id="formBody" role="search" >
+				
+				<div class="form-group">
+					
+					<div class="col-md-5">
+						<a class="btn btn-default navbar-btn btn-primary" href="login.xhtml">Login</a>
+					</div>
+					<div class="col-md-3">
+						<a class="btn btn-default navbar-btn btn-primary" href="register.xhtml">Registrar</a>
+					</div>
+				</div>
+				
+				<h:messages layout="table"/>
+				<h:inputHidden id="msg" />
+				<h:message for="msg" />
+				
+			</h:form>
+		</div>
+	  </div>
+	</nav>
+	<div class="jumbotron">
+	  <h2>Uma nova maneira de controlar as suas despesas</h2>
+	  <div class="row">
+		  <div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      <img src="bootstrap/img/bar.png" alt="Bar Graph" />
+		      <div class="caption">
+		        <p>Controle o quanto entra e sai a cada mês</p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      <img src="bootstrap/img/line.png" alt="Line Graph" />
+		      <div class="caption">
+		        <p>Da forma que você quiser</p>
+		      </div>
+		    </div>
+		  </div>
+	  </div>
+	</div>
+</div>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/jquery.min.js"></script>
 </h:body>
 </html>

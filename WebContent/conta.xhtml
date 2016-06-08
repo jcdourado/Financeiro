@@ -1,46 +1,94 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Conta</title>
+	<meta charset="UTF-8" />
+	<title>Despesas - Financeiro</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 <h:body>
-	<h:form id="formContaRegistro">
-		<h:outputLabel value="Nova conta" rendered="#{contaMB.contaAtual.id == 0}"/>
-		<h:outputLabel value="Alterar conta" rendered="#{contaMB.contaAtual.id != 0}"/>
+	<div class="container">
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="index.xhtml">Financeiro</a>
+			</div>
+			
+			<div>
+			
+				<h:form styleClass="navbar-form navbar-right"  id="formBody" role="search" >
+					
+					<div class="form-group">
+						
+						<div class="col-md-3">
+							<a class="btn btn-default navbar-btn btn-primary" href="#">Logout</a>
+						</div>
+					</div>
+					
+					<h:messages layout="table"/>
+					<h:inputHidden id="msg" />
+					<h:message for="msg" />
+					
+				</h:form>
+			
+			</div>
+			
+		  </div>
+		</nav>
 		
-		<h:outputLabel value="Despesa: " />
-		<h:inputText value="#{contaMB.contaAtual.nome}" size="20" />
+		<div class="jumbotron">
+			<h2>Nova Despesa</h2>
+			    <div class="form-group">
+				  <label for="user">Despesa:</label>
+				  <h:inputText styleClass="form-control" name="ganho" id="txtGanho" value="#{contaMB.contaAtual.nome}" size="10" />
+				  <h:message for="txtGanho" />
+				</div>
+				
+				<div class="form-group">
+				  <label for="user">Descrição:</label>
+				  <h:inputTextarea styleClass="form-control" name="descricao" id="txtDescricao" value="#{contaMB.contaAtual.descricao}" size="10" />
+				  <h:message for="txtDescricao" />
+				</div>
+				
+				<div class="form-group">
+				  <label for="user">Valor:</label>
+				  <h:inputText styleClass="form-control" name="valor" id="txtValor" value="#{contaMB.contaAtual.valor}" size="10" />
+				  <h:message for="txtValor" />
+				</div>
+				
+				<div class="form-group">
+					<h:outputLabel value="Frequencia: " />
+					<h:selectOneMenu value="#{contaMB.contaAtual.frequencia}" >
+						<f:selectItem itemValue="0" itemLabel="Nenhuma" />
+						<f:selectItem itemValue="1" itemLabel="Diário" />
+						<f:selectItem itemValue="2" itemLabel="Semanal" />
+						<f:selectItem itemValue="3" itemLabel="Mensal" />
+						<f:selectItem itemValue="4" itemLabel="Anual" />
+					</h:selectOneMenu>
+				</div>
 		
-		<h:outputLabel value="Descrição: " />
-		<h:inputTextarea value="#{contaMB.contaAtual.descricao}" rows="3" cols="10" />
+				<div class="form-group">
+				  <label for="user">Data de Pagamento:</label>
+				  <h:inputText styleClass="form-control" name="data" id="txtData" value="#{contaMB.contaAtual.data}" size="10">
+				  	<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3" />
+				  </h:inputText>
+				  <h:message for="txtData" />
+				</div>
+				
+				<div class="form-group">
+					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Atualizar" rendered="#{contaMB.contaAtual.id} != 0}" action="#{recebimentoMB.update}" />
+					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Confirmar" rendered="#{contaMB.contaAtual.id} == 0}" action="#{recebimentoMB.inserir}" />
+					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Cancelar" action="#{contaMB.cancelar}" />
+				</div>
+							
+			</div>
 		
-		<h:outputLabel value="Valor: " />
-		<h:inputText value="#{contaMB.contaAtual.valor}" size="10" />
-		
-		<h:outputLabel value="Frequencia: " />
-		<h:selectOneMenu value="#{contaMB.contaAtual.frequencia}" >
-			<f:selectItem itemValue="0" itemLabel="Nenhuma" />
-			<f:selectItem itemValue="1" itemLabel="Diário" />
-			<f:selectItem itemValue="2" itemLabel="Semanal" />
-			<f:selectItem itemValue="3" itemLabel="Mensal" />
-			<f:selectItem itemValue="4" itemLabel="Anual" />
-		</h:selectOneMenu>
-		
-		<h:outputLabel value="Data da cobrança: " />
-		<h:inputText value="#{contaMB.contaAtual.data}" >
-			<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3" />
-		</h:inputText>
-		
-		<h:commandButton value="Atualizar" rendered="#{contaMB.contaAtual.id != 0}" action="#{contaMB.update}" />
-		<h:commandButton value="Confirmar" rendered="#{contaMB.contaAtual.id == 0}" action="#{contaMB.inserir}" />
-		<h:commandButton value="Cancelar" action="#{contaMB.cancelar}" />
-		
-		<h:messages />
-	</h:form>
+		</div>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/jquery.min.js"></script>
 </h:body>
 </html>
