@@ -117,7 +117,6 @@ public class RecebimentoMB {
 			Date dateAux = new Date();
 			while(c.getProxData().before(dateAux) ){
 				c = atualizarData(c);
-				System.out.println(c.getProxData() + " - - "+  c.getData());
 			}
 		}
 		return c;
@@ -152,7 +151,7 @@ public class RecebimentoMB {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		for(Recebimento c : this.getRecebimentos()){
-			builder.append(c.getDescricao() + "|"+sdf.format(c.getData()) + "-");
+			builder.append(c.getDescricao() + "|||"+sdf.format(c.getData()) + "---");
 		}
 		return (builder.toString());
 	}

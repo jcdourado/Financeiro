@@ -43,20 +43,16 @@ public class UsuarioMB implements Serializable{
 		}
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario ou senha inválidos", "Usuario ou senha inválidos");
-		ctx.addMessage("formLogin", msg);
+		ctx.addMessage("formForm:txtUsuario", msg);
 		return "";
 	}
 	
 	public String registrarNovo(){
-		System.out.println(usuario.getUsuario());
-		System.out.println(usuario.getNome());
-		System.out.println(usuario.getEmail());
-		System.out.println(usuario.getSenha());
 		try {
 			if(dao.adicionar(usuario)){
 				FacesContext ctx = FacesContext.getCurrentInstance();
 				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario cadastrado com sucesso", "Usuario cadastrado com sucesso");
-				ctx.addMessage("formLogin", msg);
+				ctx.addMessage("formForm:txtUsuario", msg);
 				return "";
 			}
 		} catch (ClassNotFoundException e) {
@@ -66,7 +62,7 @@ public class UsuarioMB implements Serializable{
 		}
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario não cadastrado", "Usuario não cadastrado");
-		ctx.addMessage("formLogin", msg);
+		ctx.addMessage("formForm:txtUsuario", msg);
 		return "";
 	}
 	

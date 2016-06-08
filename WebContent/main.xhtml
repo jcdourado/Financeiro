@@ -14,7 +14,18 @@
 	<script src='fullcalendar-2.7.3/lang/pt-br.js'></script>
 	<script>
 		function retornaArray(){
-			
+			var strContas = "{";
+    		
+    		for(var c = 0; c < contas.length ; c++){
+    			strContas += "title: "+contas[c].split("|||")[0];
+    			strContas += "start: "+contas[c].split("|||")[1];
+    			strContas += "backgroundColor: red";
+    			strContas += "},{";
+    		}
+    		
+    		strContas += "}";
+    		
+    		return strContas;
 		}
 	
 		$(document).ready(function() {
@@ -23,18 +34,12 @@
 			var contas = document.getElementById("contas").value.split("---");	
     		var recebimentos = document.getElementById("recebimentos").value.split("---");
     		
-    		for(var c = 0; c &lt; contas.length ; c++){
-    			
-    		}
+    		
     		
 		    $('#calendar').fullCalendar({
 		        lang: 'pt-br',
 			    events: [
-			        {
-			            title: 'Event1',
-			            start: '2016-06-10',
-			            backgroundColor: 'red'
-			        },
+			        retornaArray(),
 			        {
 			            title: 'Event2',
 			            start: '2016-06-11',

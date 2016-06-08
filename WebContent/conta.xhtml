@@ -77,8 +77,8 @@
 				</div>
 				
 				<div class="form-group">
-					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Atualizar" rendered="#{contaMB.contaAtual.id} != 0}" action="#{contaMB.update}" />
-					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Confirmar" rendered="#{contaMB.contaAtual.id} == 0}" action="#{contaMB.inserir}" />
+					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Atualizar" rendered="#{contaMB.contaAtual.id != 0}" action="#{contaMB.update}" />
+					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Confirmar" rendered="#{contaMB.contaAtual.id == 0}" action="#{contaMB.inserir}" />
 					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Cancelar" action="#{contaMB.cancelar}" />
 				</div>
 							

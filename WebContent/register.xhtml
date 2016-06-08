@@ -34,13 +34,14 @@
 </div>
 
 <div class="container">
-	<h:form>
+	<h:form id="formForm">
 	
 	<div class="jumbotron">
 		<h2>Sua nova conta está aqui!</h2>
 	    <div class="form-group">
 		  <label for="usuario">Usuario:</label>
 		  <h:inputText styleClass="form-control" id="txtUsuario" value="#{usuarioMB.usuario.usuario}" size="10" />
+		  
 		</div>
 		<div class="form-group">
 		  <label for="nome">Nome completo:</label>
@@ -54,12 +55,14 @@
 		  <label for="senha">Senha:</label>
 		  <h:inputSecret styleClass="form-control" id="txtSenha" value="#{usuarioMB.usuario.senha}" size="10" />
 		  <h:message for="txtSenha" />
+		  <h:messages />
 		</div>
 		<div class="form-group">
 			<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Cadastrar" action="#{usuarioMB.registrarNovo}"/>
 			<a class="btn btn-default navbar-btn btn-primary" href="index.xhtml">Cancelar</a>
 		</div>
 	</div>
+	
 	
 	</h:form>
 	
