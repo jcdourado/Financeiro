@@ -11,55 +11,61 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 <h:body>
+
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.xhtml"><span>Financeiro</span></a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active">
+          <a href="register.xhtml">Registrar</a>
+        </li>
+        <li>
+          <a href="login.xhtml">Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <div class="container">
-	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="index.xhtml">Financeiro</a>
-		</div>
-		
-		<div>
-		
-			<h:form styleClass="navbar-form navbar-right"  id="formBody" role="search" >
-				
-				<div class="form-group">
-					
-					<div class="col-md-5">
-						<a class="btn btn-default navbar-btn btn-primary" href="login.xhtml">Login</a>
-					</div>
-					<div class="col-md-3">
-						<a class="btn btn-default navbar-btn btn-primary" href="register.xhtml">Registrar</a>
-					</div>
-				</div>
-				
-				<h:messages layout="table"/>
-				<h:inputHidden id="msg" />
-				<h:message for="msg" />
-				
-			</h:form>
-		</div>
-	  </div>
-	</nav>
+	
 	<div class="jumbotron">
 	  <h2>Uma nova maneira de controlar as suas despesas</h2>
-	  <div class="row">
-		  <div class="col-sm-6 col-md-4">
-		    <div class="thumbnail">
-		      <img src="bootstrap/img/bar.png" alt="Bar Graph" />
-		      <div class="caption">
-		        <p>Controle o quanto entra e sai a cada mês</p>
-		      </div>
-		    </div>
-		  </div>
-		  <div class="col-sm-6 col-md-4">
-		    <div class="thumbnail">
-		      <img src="bootstrap/img/line.png" alt="Line Graph" />
-		      <div class="caption">
-		        <p>Da forma que você quiser</p>
-		      </div>
-		    </div>
-		  </div>
-	  </div>
+	  
+	  <div class="section">
+	      <div class="container">
+	        <div class="row">
+	          <div class="col-md-6">
+		  			<div class="thumbnail">
+				      <img src="bootstrap/img/bar.png" alt="Bar Graph" />
+				      <div class="caption">
+				        <p>Controle o quanto entra e sai a cada mês</p>
+				      </div>
+				    </div>
+			  </div>
+			  <div class="col-md-6">
+			  		<div class="thumbnail">
+				      <img src="bootstrap/img/line.png" alt="Line Graph" />
+				      <div class="caption">
+				        <p>Da forma que você quiser</p>
+				      </div>
+				    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+	  			
+	  			
+	  
 	</div>
 </div>
 <script src="bootstrap/js/bootstrap.min.js"></script>

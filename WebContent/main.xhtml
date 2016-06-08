@@ -23,7 +23,7 @@
 			var contas = document.getElementById("contas").value.split("---");	
     		var recebimentos = document.getElementById("recebimentos").value.split("---");
     		
-    		for(var c = 0; c < contas.length ; c++){
+    		for(var c = 0; c &lt; contas.length ; c++){
     			
     		}
     		
@@ -49,67 +49,97 @@
 	
 	</script>
 <title>Principal</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </h:head>
 <h:body>
 	<h:form id="formConta">
-		<h:outputLabel value="Contas" />
-		
-		<h:commandButton value="Nova Despesa" action="#{contaMB.nova}" />
-
-		
-		<h:dataTable value="#{contaMB.contas}" var="conta">
-			<h:column>#{conta.nome}
-				<f:facet name="header">Nome</f:facet>
-			</h:column>
-			<h:column>#{conta.valor}
-				<f:facet name="header">Valor</f:facet>
-			</h:column>
-			<h:column>#{conta.frequencia}
-				<f:facet name="header">Frequência</f:facet>
-			</h:column>
-			<h:column>#{conta.descricao}
-				<f:facet name="header">Descrição</f:facet>
-			</h:column>
-			<h:column><h:outputText value="#{conta.proxData}"><f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy" /></h:outputText>
-				<f:facet name="header">Próxima cobrança</f:facet>
-			</h:column>
-			<h:column>
-				<h:commandButton value="Editar" action="#{contaMB.atualizar( conta )}" />
-				<h:commandButton value="Excluir" action="#{contaMB.excluir( conta )}" />
-				<f:facet name="header">Ações</f:facet>
-			</h:column>
-		</h:dataTable>
 	
-	</h:form>
-	
-	<h:form id="formRecebimento">
-		<h:outputLabel value="Ganhos" />
-		
-		<h:commandButton value="Novo Ganho " action="#{recebimentoMB.nova}" />
-		
-		<h:dataTable value="#{recebimentoMB.recebimentos}" var="recebimento">
-			<h:column>#{recebimento.nome}
-				<f:facet name="header">Nome</f:facet>
-			</h:column>
-			<h:column>#{recebimento.valor}
-				<f:facet name="header">Valor</f:facet>
-			</h:column>
-			<h:column>#{recebimento.frequencia}
-				<f:facet name="header">Frequência</f:facet>
-			</h:column>
-			<h:column>#{recebimento.descricao}
-				<f:facet name="header">Descrição</f:facet>
-			</h:column>
-			<h:column><h:outputText value="#{recebimento.proxData}"><f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy" /></h:outputText>
-				<f:facet name="header">Próximo recebimento</f:facet>
-				
-			</h:column>
-			<h:column>
-				<h:commandButton value="Editar" action="#{recebimentoMB.atualizar( recebimento)}" />
-				<h:commandButton value="Excluir" action="#{recebimentoMB.excluir( recebimento )}" />
-				<f:facet name="header">Ações</f:facet>
-			</h:column>
-		</h:dataTable>
+	<div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.xhtml"><span>Financeiro</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+              <a href="logout.xhtml">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+		<div class="section">
+	      <div class="container">
+	        <div class="row">
+	          <div class="col-md-6">
+	          	<h2>Seus ganhos</h2>
+	            <p:dataTable var="recebimento" value="#{recebimentoMB.recebimentos}">
+				    <p:column headerText="Nome">
+				        <h:outputText value="#{recebimento.nome}" />
+				    </p:column>
+				 
+				    <p:column headerText="Valor">
+				        <h:outputText value="#{recebimento.valor}" />
+				    </p:column>
+				 
+				    <p:column headerText="Frequencia">
+				        <h:outputText value="#{recebimento.frequencia}" />
+				    </p:column>
+				 
+				    <p:column headerText="Descrição">
+				        <h:outputText value="#{recebimento.descricao}" />
+				    </p:column>
+				    
+				    <p:column headerText="Próximo Recebimento">
+				        <h:outputText value="#{recebimento.proxData}"><f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy" /></h:outputText>
+				    </p:column>
+				    
+				    <p:column headerText="Ações">
+				    	<h:commandButton styleClass="btn btn-link " value="Editar" action="#{recebimentoMB.atualizar( recebimento )}"/>
+						<h:commandButton styleClass="btn btn-link " value="Excluir" action="#{recebimentoMB.excluir( recebimento )}"/>
+				    </p:column>
+				</p:dataTable>
+				<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Novo Recebimento" action="#{recebimentoMB.nova}"/>
+	          </div>
+	          <div class="col-md-6">
+	          	<h2>Suas despesas</h2>
+	            <p:dataTable var="conta" value="#{contaMB.contas}">
+				    <p:column headerText="Nome">
+				        <h:outputText value="#{conta.nome}" />
+				    </p:column>
+				 
+				    <p:column headerText="Valor">
+				        <h:outputText value="#{conta.valor}" />
+				    </p:column>
+				 
+				    <p:column headerText="Frequencia">
+				        <h:outputText value="#{conta.frequencia}" />
+				    </p:column>
+				 
+				    <p:column headerText="Descrição">
+				        <h:outputText value="#{conta.descricao}" />
+				    </p:column>
+				    
+				    <p:column headerText="Próxima Cobrança">
+				        <h:outputText value="#{conta.proxData}"><f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy" /></h:outputText>
+				    </p:column>
+				    
+				    <p:column headerText="Ações">
+				        <h:commandButton styleClass="btn btn-link " value="Editar" action="#{contaMB.atualizar( conta )}"/>
+						<h:commandButton styleClass="btn btn-link " value="Excluir" action="#{contaMB.excluir( conta )}"/>
+				    </p:column>
+				</p:dataTable>
+				<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Nova Despesa" action="#{contaMB.nova}"/>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
 	
 	</h:form>
 	<h:messages />
@@ -119,5 +149,8 @@
 	<div id='calendar'></div>
 	<h:inputHidden value="#{contaMB.contasString}" id="contas" />
 	<h:inputHidden value="#{recebimentoMB.recebimentosString}" id="recebimentos" />
+	
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/jquery.min.js"></script>
 </h:body>
 </html>

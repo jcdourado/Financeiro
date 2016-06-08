@@ -23,6 +23,11 @@ public class UsuarioMB implements Serializable{
 	private Usuario usuario = new Usuario();
 	private UsuarioDao dao = new UsuarioDao();
 	
+	public String logout() {
+		usuario.setLogado(false);
+		return "index?faces-redirect=false";
+	}
+	
 	public String logar(){
 		try {
 			usuario = dao.consultar(usuario);
@@ -43,6 +48,10 @@ public class UsuarioMB implements Serializable{
 	}
 	
 	public String registrarNovo(){
+		System.out.println(usuario.getUsuario());
+		System.out.println(usuario.getNome());
+		System.out.println(usuario.getEmail());
+		System.out.println(usuario.getSenha());
 		try {
 			if(dao.adicionar(usuario)){
 				FacesContext ctx = FacesContext.getCurrentInstance();

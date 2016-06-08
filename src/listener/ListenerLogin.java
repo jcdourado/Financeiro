@@ -20,7 +20,7 @@ public class ListenerLogin implements PhaseListener{
 	public void afterPhase(PhaseEvent e) {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		String page = ctx.getViewRoot().getViewId();
-		if(!"/recebimento.xhtml".equals(page) && !"/conta.xhtml".equals(page) && !"/login.xhtml".equals(page) && !"/usuario.xhtml".equals(page) && !"/index.xhtml".equals(page) && !"/esqueci.xhtml".equals(page) && !"/register.xhtml".equals(page)){
+		if(!"/login.xhtml".equals(page) && !"/index.xhtml".equals(page) && !"/esqueci.xhtml".equals(page) && !"/register.xhtml".equals(page)){
 			Application app = ctx.getApplication();
 			UsuarioMB user = app.evaluateExpressionGet(ctx, "#{usuarioMB}", UsuarioMB.class);
 			if(!user.getUsuario().isLogado()){
@@ -28,6 +28,11 @@ public class ListenerLogin implements PhaseListener{
 				handler.handleNavigation(ctx, "", "login?faces-redirect=true");
 				ctx.renderResponse();
 			}
+		}
+		if ("/logout.xhtml".equals(page)) {
+			Application app = ctx.getApplication();
+			UsuarioMB user = app.evaluateExpressionGet(ctx, "#{usuarioMB}", UsuarioMB.class);
+			user.logout();
 		}
 	}
 

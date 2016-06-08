@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
->
-<h:head>
-	<meta charset="UTF-8" />
-	<title>Esqueci</title>
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-</h:head>
-<h:body>
+	  xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Logout - Financeiro</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
 
 <div class="navbar navbar-default navbar-static-top">
   <div class="container">
@@ -26,9 +25,6 @@
     <div class="collapse navbar-collapse" id="navbar-ex-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
-          <a href="register.xhtml">Registrar</a>
-        </li>
-        <li >
           <a href="login.xhtml">Login</a>
         </li>
       </ul>
@@ -36,22 +32,20 @@
   </div>
 </div>
 
-<h:form>
-<div class="container">
-	<div class="jumbotron">
-			<div class="form-group">
-			  <label for="email">E-mail:</label>
-			  <input type="text" class="form-control" id="email"/>
-			</div>
-			<div class="form-group">
-				<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Entrar" action="#{emailMB.esqueci}"/>
-				<a class="btn btn-default navbar-btn btn-primary" href="login.xhtml">Voltar</a>
-			</div>
-		</div>
-	
-</div>
-</h:form>
+<div class="cover">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h1 class="text-inverse">Até mais!</h1>
+            <p class="text-inverse">Você está desconectado.</p>
+            <br/>
+            <br/>
+            <a class="btn btn-default navbar-btn btn-primary" href="login.xhtml">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="bootstrap/js/jquery.min.js"></script>
-</h:body>
+</body>
 </html>
